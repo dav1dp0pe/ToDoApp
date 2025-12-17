@@ -7,7 +7,7 @@
 <body>
     <h1>ToDo Application</h1>
 <div>
-    <th:block th:each="task : ${task}">
+    <th:block th:each="task : ${tasks}">
         <div>
             <span th:text="${task.title}">Task Title</span>
         </div>
