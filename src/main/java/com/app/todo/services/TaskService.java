@@ -18,4 +18,22 @@ public class TaskService {
         return taskRepository.findAll();
     }
 
+    //create a task when given a title
+    public void createTask(String title) {
+        Task task = new Task();
+        task.setTitle(title);
+        task.setCompleted(false);
+        taskRepository.save(task);
+    }
+
+    //delete a task when given an id
+    public void deleteTask(long id) {
+        taskRepository.deleteById(id);
+    }
+
+    public void toggleTask(long id) {
+        Task task = taskRepository.findById(id).orElseThrow(() -> new RuntimeException("Task not found"));
+        task.setCompleted(!task.isCompleted());
+        taskRepository.save(task);
+    }
 }
