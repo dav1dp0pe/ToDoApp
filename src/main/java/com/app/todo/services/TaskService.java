@@ -2,6 +2,7 @@ package com.app.todo.services;
 
 import com.app.todo.model.Task;
 import com.app.todo.repository.TaskRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
     public List<Task> getAllTasks() {
-        return taskRepository.findAll();
+        return taskRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     //create a task when given a title
