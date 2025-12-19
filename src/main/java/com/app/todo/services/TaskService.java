@@ -12,9 +12,12 @@ public class TaskService {
 
     private final TaskRepository taskRepository;
 
+    //constructor
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
     }
+
+    //get all tasks
     public List<Task> getAllTasks() {
         return taskRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
@@ -32,6 +35,7 @@ public class TaskService {
         taskRepository.deleteById(id);
     }
 
+    //toggle a task's completed status when given an id
     public void toggleTask(long id) {
         Task task = taskRepository.findById(id).orElseThrow(() -> new RuntimeException("Task not found"));
         task.setCompleted(!task.isCompleted());
